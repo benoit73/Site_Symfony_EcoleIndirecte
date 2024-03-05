@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        {% block stylesheets %}
+        {% endblock %}
+
+        {% block javascripts %}
+        {% endblock %}
+    </head>
+    <body>
+        {% block navbar %}
+        <div class="row navbar">
+            <div class="col">
+                {% if app.user is not null %}
+                    <p> {{ app.user.getEmail }}, <a href="{{ path('app_logout') }}">Logout</a> </p>
+                {% endif %}
+            </div>
+            <div class="col container d-flex justify-content-center align-items-center">
+                <h1> EcoleIndirecte
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+
+        {% endblock %}
+
+
+                
+        {% block body %}{% endblock %}
+    </body>
+</html>
