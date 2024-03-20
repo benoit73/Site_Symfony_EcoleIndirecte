@@ -1,20 +1,82 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeParentsController!{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/home_style.css') }}">
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/cptbe/symfony_v5/src/Controller/HomeParentsController.php</code></li>
-        <li>Your template at <code>C:/Users/cptbe/symfony_v5/templates/home_parents/index.html.twig</code></li>
-    </ul>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-center">
+            {% for eleve in eleves %}
+                <a href="{{ path('app_home_parents', {'i': loop.index - 1}) }}" class="btn-eleve btn btn-primary">{{ eleve.getNomEleve }}</a> <br>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
+    <h1> Absences </h1>
+    <div class="row"> 
+        <div class="col">
+            <div class="totalContainer">
+                <h3 class="test"> {{ nbAbsencesNonJustifiees }} </h3>
+                <h3> Non justifiées </h3>
+            </div>
+        </div>
+        <div class="col">
+            <div class="totalContainer">
+                <h3 class="test"> {{ nbAbsences }} </h3>
+                <h3> Absences </h3>
+            </div>
+        </div>
+        <div class="col">
+            <div class="totalContainer">
+                <h3 class="test"> {{ nbAbsencesJustifiees }} </h3>
+                <h3> justifiées </h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row custom-background">
+            <!-- Entêtes de colonne -->
+            <div class="col">
+                <a href="{{ path('app_home', { 'sort': 'date' }) }}">Absences</a>
+            </div>
+            <div class="col">
+                <a href="{{ path('app_home', { 'sort': 'duree' }) }}">Durée</a>
+            </div>
+            <div class="col">
+                <a href="{{ path('app_home', { 'sort': 'justifiee' }) }}">Justifiée</a>
+            </div>
+            <div class="col">
+                <a href="{{ path('app_home', { 'sort': 'professeur' }) }}">Professeur</a>
+            </div>
+            <div class="col">
+                <a href="{{ path('app_home', { 'sort': 'matiere' }) }}">Matière</a>
+            </div>
+        </div>
+
+        {% for absence in absences %}
+            <div class="row">
+                <div class="col border">
+                    {% set date = calendrierRepository.findOneBy({ semaine: absence.cour.semaine, jour: absence.cour.jour }) %}
+                    <p>Date : le {{ date.jour }}/{{ date.mois }}/{{ date.annee }} à {{ absence.cour.debut / 2 }}h </p>
+                </div>
+                <div class="col border">
+                    <p>{{ absence.cour.duree / 2 }}h</p>       
+                </div>
+                <div class="col border">
+                    <p> Justifiée ? : {% if absence.justifiee == 1 %} Oui {% else %} Non {% endif %} </p>
+                </div>            
+                <div class="col border">
+                    {{ absence.cour.enseignantMatiereClasse.enseignant.getPrenomEnseignant() }} {{ absence.cour.enseignantMatiereClasse.enseignant.getNomEnseignant() }}
+                </div>
+                <div class="col border">
+                    {{ absence.cour.enseignantMatiereClasse.matiere.getNomMatiere() }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

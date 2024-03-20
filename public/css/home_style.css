@@ -1,0 +1,71 @@
+/* Définir le style pour le titre h1 */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 36px;
+    color: #333;
+}
+
+/* Style pour le conteneur des statistiques d'absences */
+.row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.totalContainer {
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.test {
+    font-size: 24px;
+    color: #ff5722;
+}
+
+
+
+/* Style pour les lignes personnalisées */
+.custom-background {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+
+/* Style pour les bordures des colonnes */
+.border {
+    border-right: none;
+    border-left: none;
+}
+
+/* Style pour les liens de tri */
+.col a {
+    color: #333;
+    text-decoration: none;
+}
+
+.col a:hover {
+    color: #ff5722;
+}
+
+/* Style pour les paragraphes de détails */
+.row p {
+    margin: 5px 0;
+}
+
+/* Style pour le texte justifié */
+.justified-yes {
+    color: green;
+}
+
+.justified-no {
+    color: red;
+}
+
+.btn-eleve{
+    margin: 5px;
+}

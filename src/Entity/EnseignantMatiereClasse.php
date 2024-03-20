@@ -17,15 +17,15 @@ class EnseignantMatiereClasse
 
     #[ORM\ManyToOne(inversedBy: 'enseignantMatiereClasses')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?enseignant $Enseignant = null;
+    private ?Enseignant $Enseignant = null;
 
     #[ORM\ManyToOne(inversedBy: 'enseignantMatiereClasses')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?matiere $Matiere = null;
+    private ?Matiere $Matiere = null;
 
     #[ORM\ManyToOne(inversedBy: 'enseignantMatiereClasses')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?classe $Classe = null;
+    private ?Classe $Classe = null;
 
     #[ORM\OneToMany(targetEntity: cour::class, mappedBy: 'enseignantMatiereClasse', orphanRemoval: true)]
     private Collection $cour;
@@ -44,36 +44,36 @@ class EnseignantMatiereClasse
         return $this->id;
     }
 
-    public function getEnseignant(): ?enseignant
+    public function getEnseignant(): ?Enseignant
     {
         return $this->Enseignant;
     }
 
-    public function setEnseignant(?enseignant $Enseignant): static
+    public function setEnseignant(?Enseignant $Enseignant): static
     {
         $this->Enseignant = $Enseignant;
 
         return $this;
     }
 
-    public function getMatiere(): ?matiere
+    public function getMatiere(): ?Matiere
     {
         return $this->Matiere;
     }
 
-    public function setMatiere(?matiere $Matiere): static
+    public function setMatiere(?Matiere $Matiere): static
     {
         $this->Matiere = $Matiere;
 
         return $this;
     }
 
-    public function getClasse(): ?classe
+    public function getClasse(): ?Classe
     {
         return $this->Classe;
     }
 
-    public function setClasse(?classe $Classe): static
+    public function setClasse(?Classe $Classe): static
     {
         $this->Classe = $Classe;
 
@@ -88,7 +88,7 @@ class EnseignantMatiereClasse
         return $this->cour;
     }
 
-    public function addCour(cour $cour): static
+    public function addCour(Cour $cour): static
     {
         if (!$this->cour->contains($cour)) {
             $this->cour->add($cour);
@@ -98,7 +98,7 @@ class EnseignantMatiereClasse
         return $this;
     }
 
-    public function removeCour(cour $cour): static
+    public function removeCour(Cour $cour): static
     {
         if ($this->cour->removeElement($cour)) {
             // set the owning side to null (unless already changed)

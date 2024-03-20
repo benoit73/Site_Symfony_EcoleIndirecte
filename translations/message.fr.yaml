@@ -1,0 +1,3 @@
+security:
+  login:
+    error_invalid_credentials: "Identifiants invalides. Veuillez réessayer."

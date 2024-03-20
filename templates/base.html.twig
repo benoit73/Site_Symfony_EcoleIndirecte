@@ -2,8 +2,9 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>EcoleIndirecte</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="icon" type="image/x-icon" href="https://www.ecoledirecte.com/favicon.ico">
         {% block stylesheets %}
         {% endblock %}
 
@@ -12,14 +13,15 @@
     </head>
     <body>
         {% block navbar %}
-        <div class="row navbar">
-            <div class="col">
-                {% if app.user is not null %}
-                    <p> {{ app.user.getEmail }}, <a href="{{ path('app_logout') }}">Logout</a> </p>
-                {% endif %}
+        <div class="row navbar border-bottom bg-primary">
+            <div class="col d-flex align-items-left ">
+            {% if app.user is not null %}
+                <p class="mr-2">{{ app.user.getEmail }}</p> 
+                <a class="btn btn-danger" href="{{ path('app_logout') }}">Déconnexion</a> 
+            {% endif %}
             </div>
             <div class="col container d-flex justify-content-center align-items-center">
-                <h1> EcoleIndirecte
+                <h2> EcoleIndirecte
             </div>
             <div class="col">
 
